@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     APP_HOST_PORT: str
     SECRET_KEY: str
     ALGORITHM: str
-    PATH: str
+    PATH_MD: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int
 
 

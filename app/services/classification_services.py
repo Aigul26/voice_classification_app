@@ -15,7 +15,7 @@ async def predicated_class(mp3_file: UploadFile) -> Dict[str, Any]:
         raise HTTPException(status_code=400, detail="Could not process audio file")
         
     features = features.reshape(1, -1)
-    clf = joblib.load(settings.PATH)
+    clf = joblib.load('app/source/age_classifier.pkl')
     predicted_class = clf.predict(features)[0]
     
     return {"predicted_class": predicted_class}
