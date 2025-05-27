@@ -12,16 +12,15 @@ from app.auth import (
 class_router = APIRouter(tags=['classification'])
 
 @class_router.post("/classification_file")
-async def upload_file(mp3_file: UploadFile = File(...),
-                      current_user: UserInDB = Depends(get_current_user)):
+async def upload_file(mp3_file: UploadFile = File(...)):
     if not mp3_file.filename.lower().endswith('.mp3'):
         raise HTTPException(status_code=400, detail="Only MP3 files are allowed")
 
     try:
         return await predicated_class(mp3_file)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error processing file: {str(e)}")
-    
+        raise HTTPException(status_code=500, detail=f"Error processing file: {str(e)}") 
+
 
 @class_router.post("/classification/batch")
 async def batch_classification(files: List[UploadFile] = File(...),
