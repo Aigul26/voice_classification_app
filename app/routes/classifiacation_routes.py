@@ -21,7 +21,7 @@ async def upload_file(mp3_file: UploadFile = File(...),
         return await predicated_class(mp3_file)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing file: {str(e)}")
-    
+
 
 @class_router.post("/classification/batch")
 async def batch_classification(files: List[UploadFile] = File(...),
